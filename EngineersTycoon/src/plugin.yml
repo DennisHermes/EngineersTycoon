@@ -1,0 +1,11 @@
+main: me.goodgamer123.EngineersTycoon.MainClass
+api-version: 1.17
+name: EngineersTycoon
+author: goodgamer123
+description: Add machines to minecraft.
+version: 1.0
+
+commands:
+  machinelist:
+    description: get machines.
+    permission: EngineersTycoon.machines
