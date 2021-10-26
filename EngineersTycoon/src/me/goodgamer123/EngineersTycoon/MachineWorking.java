@@ -52,11 +52,21 @@ public class MachineWorking {
 				for (int i = 0; i < ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getSize(); i++) {
 					ItemStack item = ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getItem(i);
 					if (item != null) {
+						int count = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) count = count + is.getAmount();
+				        }
 						int newAmount = item.getAmount() - 1;
 						item.setAmount(1);
 						((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().addItem(item);
-						item.setAmount(newAmount);
-						((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().setItem(i, item);
+						int newCount = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) newCount = newCount + is.getAmount();
+				        }
+						if (count != newCount) {
+							item.setAmount(newAmount);
+							((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().setItem(i, item);
+						}
 						return;
 					}
 		        }
@@ -66,11 +76,21 @@ public class MachineWorking {
 				for (int i = 0; i < ((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().getSize(); i++) {
 					ItemStack item = ((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().getItem(i);
 					if (item != null) {
+						int count = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) count = count + is.getAmount();
+				        }
 						int newAmount = item.getAmount() - 1;
 						item.setAmount(1);
 						((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().addItem(item);
-						item.setAmount(newAmount);
-						((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().setItem(i, item);
+						int newCount = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) newCount = newCount + is.getAmount();
+				        }
+						if (count != newCount) {
+							item.setAmount(newAmount);
+							((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().setItem(i, item);
+						}
 						return;
 					}
 		        }
@@ -153,6 +173,44 @@ public class MachineWorking {
 	            }
 	        }
 		}
+	}
+	
+	public static void MinerWorking(ArmorStand as) {
+		
+		Block locBlock = as.getLocation().add(-0.5, 0.5, -0.5).getBlock();
+		
+		Location max = locBlock.getLocation().add(1, -1, 1);
+		Location min = locBlock.getLocation().add(-2, -11, -2);
+        
+
+		for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+			for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+				for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+                	Block block = locBlock.getWorld().getBlockAt(x, y, z);
+                    if (block.getType() == Material.COAL_ORE) {
+                    	block.setType(Material.AIR);
+                    	((Container) locBlock.getState()).getInventory().addItem(new ItemStack(Material.COAL_ORE));
+                    	return;
+                    } else if (block.getType() == Material.IRON_ORE) {
+                    	block.setType(Material.AIR);
+                    	((Container) locBlock.getState()).getInventory().addItem(new ItemStack(Material.IRON_ORE));
+                    	return;
+                    } else if (block.getType() == Material.GOLD_ORE) {
+                    	block.setType(Material.AIR);
+                    	((Container) locBlock.getState()).getInventory().addItem(new ItemStack(Material.GOLD_ORE));
+                    	return;
+                    } else if (block.getType() == Material.DIAMOND_ORE) {
+                    	block.setType(Material.AIR);
+                    	((Container) locBlock.getState()).getInventory().addItem(new ItemStack(Material.DIAMOND_ORE));
+                    	return;
+                    } else if (block.getType() == Material.EMERALD_ORE) {
+                    	block.setType(Material.AIR);
+                    	((Container) locBlock.getState()).getInventory().addItem(new ItemStack(Material.EMERALD_ORE));
+                    	return;
+                    }
+                }
+            }
+        }
 	}
 	
 }

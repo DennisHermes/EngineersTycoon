@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import me.goodgamer123.EngineersTycoon.Machines.ItemExtractor;
 import me.goodgamer123.EngineersTycoon.Machines.MineBuilder;
+import me.goodgamer123.EngineersTycoon.Machines.Miner;
 
 public class InventoryClickEvents implements Listener {
 
@@ -37,6 +38,8 @@ public class InventoryClickEvents implements Listener {
 				p.getInventory().addItem(ItemExtractor.itemExtractor4());
 			}
 			
+			
+			
 			if (e.getCurrentItem().equals(MineBuilder.mineBuilder1())) {
 				e.setCancelled(true);
 				p.updateInventory();
@@ -53,6 +56,26 @@ public class InventoryClickEvents implements Listener {
 				e.setCancelled(true);
 				p.updateInventory();
 				p.getInventory().addItem(MineBuilder.mineBuilder4());
+			}
+			
+			
+			
+			if (e.getCurrentItem().equals(Miner.miner1())) {
+				e.setCancelled(true);
+				p.updateInventory();
+				p.getInventory().addItem(Miner.miner1());
+			} else if (e.getCurrentItem().equals(Miner.miner2())) {
+				e.setCancelled(true);
+				p.updateInventory();
+				p.getInventory().addItem(Miner.miner2());
+			} else if (e.getCurrentItem().equals(Miner.miner3())) {
+				e.setCancelled(true);
+				p.updateInventory();
+				p.getInventory().addItem(Miner.miner3());
+			} else if (e.getCurrentItem().equals(Miner.miner4())) {
+				e.setCancelled(true);
+				p.updateInventory();
+				p.getInventory().addItem(Miner.miner4());
 			}
 		}
 	}

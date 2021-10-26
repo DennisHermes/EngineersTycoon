@@ -16,6 +16,7 @@ import me.goodgamer123.EngineersTycoon.Events.MachineRemove;
 import me.goodgamer123.EngineersTycoon.Events.OnMachineInteraction;
 import me.goodgamer123.EngineersTycoon.Machines.ItemExtractor;
 import me.goodgamer123.EngineersTycoon.Machines.MineBuilder;
+import me.goodgamer123.EngineersTycoon.Machines.Miner;
 
 public final class MainClass extends JavaPlugin {
 	
@@ -31,7 +32,7 @@ public final class MainClass extends JavaPlugin {
 			public void run() {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
-						if (as.getCustomName().equals("MineBuilderMK1")) MachineWorking.MineGeneratorWorking(as, 1);
+						if (as.getCustomName() != null) if (as.getCustomName().equals("MineBuilderMK1")) MachineWorking.MineGeneratorWorking(as, 1);
 					}
 				}
 			}
@@ -41,7 +42,7 @@ public final class MainClass extends JavaPlugin {
 			public void run() {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
-						if (as.getCustomName().equals("MineBuilderMK2")) MachineWorking.MineGeneratorWorking(as, 2);
+						if (as.getCustomName() != null) if (as.getCustomName().equals("MineBuilderMK2")) MachineWorking.MineGeneratorWorking(as, 2);
 					}
 				}
 			}
@@ -51,7 +52,7 @@ public final class MainClass extends JavaPlugin {
 			public void run() {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
-						if (as.getCustomName().equals("MineBuilderMK3")) MachineWorking.MineGeneratorWorking(as, 3);
+						if (as.getCustomName() != null) if (as.getCustomName().equals("MineBuilderMK3")) MachineWorking.MineGeneratorWorking(as, 3);
 					}
 				}
 			}
@@ -61,7 +62,7 @@ public final class MainClass extends JavaPlugin {
 			public void run() {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
-						if (as.getCustomName().equals("MineBuilderMK4")) MachineWorking.MineGeneratorWorking(as, 4);
+						if (as.getCustomName() != null) if (as.getCustomName().equals("MineBuilderMK4")) MachineWorking.MineGeneratorWorking(as, 4);
 					}
 				}
 			}
@@ -71,17 +72,33 @@ public final class MainClass extends JavaPlugin {
 			public void run() {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
-						if (as.getCustomName().equals("ItemExtractorMK1")) MachineWorking.ExtractorWorking(as);
+						if (as.getCustomName() != null) {
+							if (as.getCustomName().equals("ItemExtractorMK1")) MachineWorking.ExtractorWorking(as);
+							else if (as.getCustomName().equals("MinerMK1")) MachineWorking.MinerWorking(as);
+						}
 					}
 				}
 			}
-		}, 120L, 120L);
+		}, 140L, 140L);
 		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			public void run() {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
-						if (as.getCustomName().equals("ItemExtractorMK2")) MachineWorking.ExtractorWorking(as);
+						if (as.getCustomName() != null) if (as.getCustomName().equals("ItemExtractorMK2")) MachineWorking.ExtractorWorking(as);
+					}
+				}
+			}
+		}, 160L, 160L);
+		
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+			public void run() {
+				for (World world : Bukkit.getWorlds()) {
+					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
+						if (as.getCustomName() != null) {
+							if (as.getCustomName().equals("ItemExtractorMK3")) MachineWorking.ExtractorWorking(as);
+							else if (as.getCustomName().equals("MinerMK2")) MachineWorking.MinerWorking(as);
+						}
 					}
 				}
 			}
@@ -91,7 +108,10 @@ public final class MainClass extends JavaPlugin {
 			public void run() {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
-						if (as.getCustomName().equals("ItemExtractorMK3")) MachineWorking.ExtractorWorking(as);
+						if (as.getCustomName() != null) {
+							if (as.getCustomName().equals("ItemExtractorMK4")) MachineWorking.ExtractorWorking(as);
+							else if (as.getCustomName().equals("MinerMK3")) MachineWorking.MinerWorking(as);
+						}
 					}
 				}
 			}
@@ -101,7 +121,9 @@ public final class MainClass extends JavaPlugin {
 			public void run() {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
-						if (as.getCustomName().equals("ItemExtractorMK4")) MachineWorking.ExtractorWorking(as);
+						if (as.getCustomName() != null) {
+							if (as.getCustomName().equals("MinerMK4")) MachineWorking.MinerWorking(as);
+						}
 					}
 				}
 			}
@@ -117,7 +139,7 @@ public final class MainClass extends JavaPlugin {
 		Player p = (Player)sender;
 	    
 		if (cmd.getName().equalsIgnoreCase("machinelist")) {
-			Inventory inv = Bukkit.createInventory(null, 18, ChatColor.AQUA + "§lMachines");
+			Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "§lMachines");
 			inv.setItem(0, ItemExtractor.itemExtractor1());
 			inv.setItem(1, ItemExtractor.itemExtractor2());
 			inv.setItem(2, ItemExtractor.itemExtractor3());
@@ -126,6 +148,10 @@ public final class MainClass extends JavaPlugin {
 			inv.setItem(10, MineBuilder.mineBuilder2());
 			inv.setItem(11, MineBuilder.mineBuilder3());
 			inv.setItem(12, MineBuilder.mineBuilder4());
+			inv.setItem(18, Miner.miner1());
+			inv.setItem(19, Miner.miner2());
+			inv.setItem(20, Miner.miner3());
+			inv.setItem(21, Miner.miner4());
 			
 			p.openInventory(inv);
 		}

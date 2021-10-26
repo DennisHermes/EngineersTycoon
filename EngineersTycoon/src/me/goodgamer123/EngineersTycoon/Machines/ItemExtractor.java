@@ -101,7 +101,7 @@ public class ItemExtractor {
 		List<String> itemExtractorInfoLore = new ArrayList<String>();
 		itemExtractorInfoLore.add("");
 		itemExtractorInfoLore.add(ChatColor.GREEN + "Mark: " + ChatColor.DARK_GREEN + "1");
-		itemExtractorInfoLore.add(ChatColor.GREEN + "Items/minutes: " + ChatColor.DARK_GREEN + "10");
+		itemExtractorInfoLore.add(ChatColor.GREEN + "Items/minute: " + ChatColor.DARK_GREEN + "5");
 		itemExtractorInfoMeta.setLore(itemExtractorInfoLore);
 		itemExtractorInfo.setItemMeta(itemExtractorInfoMeta);
 		
@@ -117,7 +117,7 @@ public class ItemExtractor {
 		List<String> itemExtractorInfoLore = new ArrayList<String>();
 		itemExtractorInfoLore.add("");
 		itemExtractorInfoLore.add(ChatColor.BLUE + "Mark: " + ChatColor.DARK_BLUE + "2");
-		itemExtractorInfoLore.add(ChatColor.BLUE + "Items/minutes: " + ChatColor.DARK_BLUE + "15");
+		itemExtractorInfoLore.add(ChatColor.BLUE + "Items/minute: " + ChatColor.DARK_BLUE + "7.5");
 		itemExtractorInfoMeta.setLore(itemExtractorInfoLore);
 		itemExtractorInfo.setItemMeta(itemExtractorInfoMeta);
 		
@@ -133,7 +133,7 @@ public class ItemExtractor {
 		List<String> itemExtractorInfoLore = new ArrayList<String>();
 		itemExtractorInfoLore.add("");
 		itemExtractorInfoLore.add(ChatColor.RED + "Mark: " + ChatColor.DARK_RED + "3");
-		itemExtractorInfoLore.add(ChatColor.RED + "Items/minutes: " + ChatColor.DARK_RED + "30");
+		itemExtractorInfoLore.add(ChatColor.RED + "Items/minute: " + ChatColor.DARK_RED + "15");
 		itemExtractorInfoMeta.setLore(itemExtractorInfoLore);
 		itemExtractorInfo.setItemMeta(itemExtractorInfoMeta);
 		
@@ -149,7 +149,7 @@ public class ItemExtractor {
 		List<String> itemExtractorInfoLore = new ArrayList<String>();
 		itemExtractorInfoLore.add("");
 		itemExtractorInfoLore.add(ChatColor.LIGHT_PURPLE + "Mark: " + ChatColor.DARK_PURPLE + "4");
-		itemExtractorInfoLore.add(ChatColor.LIGHT_PURPLE + "Items/minutes: " + ChatColor.DARK_PURPLE + "60");
+		itemExtractorInfoLore.add(ChatColor.LIGHT_PURPLE + "Items/minute: " + ChatColor.DARK_PURPLE + "30");
 		itemExtractorInfoMeta.setLore(itemExtractorInfoLore);
 		itemExtractorInfo.setItemMeta(itemExtractorInfoMeta);
 		

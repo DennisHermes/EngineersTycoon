@@ -13,9 +13,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.util.EulerAngle;
 
 import me.goodgamer123.EngineersTycoon.Machines.ItemExtractor;
 import me.goodgamer123.EngineersTycoon.Machines.MineBuilder;
+import me.goodgamer123.EngineersTycoon.Machines.Miner;
 
 public class MachinePlace implements Listener {
 
@@ -46,7 +48,7 @@ public class MachinePlace implements Listener {
 	        as.getEquipment().setHelmet(lchest);
 		}
 		
-		if (item.equals(ItemExtractor.itemExtractor2())) {
+		else if (item.equals(ItemExtractor.itemExtractor2())) {
 			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, 0.02, 0.5), ArmorStand.class);
 
 	        as.setGravity(false);
@@ -65,7 +67,7 @@ public class MachinePlace implements Listener {
 	        as.getEquipment().setHelmet(lchest);
 		}
 		
-		if (item.equals(ItemExtractor.itemExtractor3())) {
+		else if (item.equals(ItemExtractor.itemExtractor3())) {
 			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, 0.02, 0.5), ArmorStand.class);
 
 	        as.setGravity(false);
@@ -84,7 +86,7 @@ public class MachinePlace implements Listener {
 	        as.getEquipment().setHelmet(lchest);
 		}
 		
-		if (item.equals(ItemExtractor.itemExtractor4())) {
+		else if (item.equals(ItemExtractor.itemExtractor4())) {
 			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, 0.02, 0.5), ArmorStand.class);
 
 	        as.setGravity(false);
@@ -105,7 +107,7 @@ public class MachinePlace implements Listener {
 		
 //=================================================================================================================================================================//
 		
-		if (item.equals(MineBuilder.mineBuilder1())) {
+		else if (item.equals(MineBuilder.mineBuilder1())) {
 			Location max = e.getBlock().getLocation().add(2, -1, 2);
 	        Location min = e.getBlock().getLocation().add(-3, -13, -3);
 	        
@@ -159,7 +161,7 @@ public class MachinePlace implements Listener {
 	        }
 		}
 		
-		if (item.equals(MineBuilder.mineBuilder2())) {
+		else if (item.equals(MineBuilder.mineBuilder2())) {
 			Location max = e.getBlock().getLocation().add(2, -1, 2);
 	        Location min = e.getBlock().getLocation().add(-3, -13, -3);
 	        
@@ -214,7 +216,7 @@ public class MachinePlace implements Listener {
 	        }
 		}
 		
-		if (item.equals(MineBuilder.mineBuilder3())) {
+		else if (item.equals(MineBuilder.mineBuilder3())) {
 			Location max = e.getBlock().getLocation().add(2, -1, 2);
 	        Location min = e.getBlock().getLocation().add(-3, -13, -3);
 	        
@@ -269,7 +271,7 @@ public class MachinePlace implements Listener {
 	        }
 		}
 		
-		if (item.equals(MineBuilder.mineBuilder4())) {
+		else if (item.equals(MineBuilder.mineBuilder4())) {
 			Location max = e.getBlock().getLocation().add(2, -1, 2);
 	        Location min = e.getBlock().getLocation().add(-3, -13, -3);
 	        
@@ -322,8 +324,94 @@ public class MachinePlace implements Listener {
 	                }
 	            }
 	        }
+	        
+//=================================================================================================================================================================//
+	        
+		} else if (item.equals(Miner.miner1())) {
+			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.5, 0.5), ArmorStand.class);
+			ArmorStand as1 = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.5, 0.5), ArmorStand.class);
+
+	        as.setGravity(false);
+	        as.setCanPickupItems(false);
+	        as.setCustomName("MinerMK1");
+	        as.setCustomNameVisible(false);
+	        as.setVisible(false);
+	        as.setMarker(true);
+	        
+	        as1.setGravity(false);
+	        as1.setCanPickupItems(false);
+	        as1.setVisible(false);
+	        as1.setMarker(true);
+	        
+	        as.getEquipment().setHelmet(new ItemStack(Material.GREEN_STAINED_GLASS));
+	        as1.getEquipment().setHelmet(new ItemStack(Material.GREEN_STAINED_GLASS));
+	        
+	        as.setHeadPose(new EulerAngle(0.5 * Math.PI, 0, 0));
+	        as1.setHeadPose(new EulerAngle(-0.5 * Math.PI, 0, 0));
+		}  else if (item.equals(Miner.miner2())) {
+			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.5, 0.5), ArmorStand.class);
+			ArmorStand as1 = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.5, 0.5), ArmorStand.class);
+
+	        as.setGravity(false);
+	        as.setCanPickupItems(false);
+	        as.setCustomName("MinerMK2");
+	        as.setCustomNameVisible(false);
+	        as.setVisible(false);
+	        as.setMarker(true);
+	        
+	        as1.setGravity(false);
+	        as1.setCanPickupItems(false);
+	        as1.setVisible(false);
+	        as1.setMarker(true);
+	        
+	        as.getEquipment().setHelmet(new ItemStack(Material.BLUE_STAINED_GLASS));
+	        as1.getEquipment().setHelmet(new ItemStack(Material.BLUE_STAINED_GLASS));
+	        
+	        as.setHeadPose(new EulerAngle(0.5 * Math.PI, 0, 0));
+	        as1.setHeadPose(new EulerAngle(-0.5 * Math.PI, 0, 0));
+		}  else if (item.equals(Miner.miner3())) {
+			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.5, 0.5), ArmorStand.class);
+			ArmorStand as1 = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.5, 0.5), ArmorStand.class);
+
+	        as.setGravity(false);
+	        as.setCanPickupItems(false);
+	        as.setCustomName("MinerMK3");
+	        as.setCustomNameVisible(false);
+	        as.setVisible(false);
+	        as.setMarker(true);
+	        
+	        as1.setGravity(false);
+	        as1.setCanPickupItems(false);
+	        as1.setVisible(false);
+	        as1.setMarker(true);
+	        
+	        as.getEquipment().setHelmet(new ItemStack(Material.RED_STAINED_GLASS));
+	        as1.getEquipment().setHelmet(new ItemStack(Material.RED_STAINED_GLASS));
+	        
+	        as.setHeadPose(new EulerAngle(0.5 * Math.PI, 0, 0));
+	        as1.setHeadPose(new EulerAngle(-0.5 * Math.PI, 0, 0));
+		}  else if (item.equals(Miner.miner4())) {
+			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.5, 0.5), ArmorStand.class);
+			ArmorStand as1 = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.5, 0.5), ArmorStand.class);
+
+	        as.setGravity(false);
+	        as.setCanPickupItems(false);
+	        as.setCustomName("MinerMK4");
+	        as.setCustomNameVisible(false);
+	        as.setVisible(false);
+	        as.setMarker(true);
+	        
+	        as1.setGravity(false);
+	        as1.setCanPickupItems(false);
+	        as1.setVisible(false);
+	        as1.setMarker(true);
+	        
+	        as.getEquipment().setHelmet(new ItemStack(Material.PURPLE_STAINED_GLASS));
+	        as1.getEquipment().setHelmet(new ItemStack(Material.PURPLE_STAINED_GLASS));
+	        
+	        as.setHeadPose(new EulerAngle(0.5 * Math.PI, 0, 0));
+	        as1.setHeadPose(new EulerAngle(-0.5 * Math.PI, 0, 0));
 		}
-		
 	}
 	
 }
