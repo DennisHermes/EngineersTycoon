@@ -125,7 +125,7 @@ public class ItemExtractor {
 	}
 	
 	public static ItemStack itemExtractor3Info() {
-		ItemStack itemExtractorInfo = new ItemStack(Material.EMERALD);
+		ItemStack itemExtractorInfo = new ItemStack(Material.DIAMOND);
 		ItemMeta itemExtractorInfoMeta = itemExtractorInfo.getItemMeta();
 		
 		itemExtractorInfoMeta.setDisplayName(ChatColor.RED + "Item extractor MK3");
@@ -141,7 +141,7 @@ public class ItemExtractor {
 	}
 	
 	public static ItemStack itemExtractor4Info() {
-		ItemStack itemExtractorInfo = new ItemStack(Material.DIAMOND);
+		ItemStack itemExtractorInfo = new ItemStack(Material.EMERALD);
 		ItemMeta itemExtractorInfoMeta = itemExtractorInfo.getItemMeta();
 		
 		itemExtractorInfoMeta.setDisplayName(ChatColor.DARK_PURPLE + "Item extractor MK4");

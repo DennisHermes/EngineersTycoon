@@ -1,7 +1,12 @@
 package me.goodgamer123.EngineersTycoon.Events;
 
+import java.util.Random;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,15 +15,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import me.goodgamer123.EngineersTycoon.Machines.ItemExtractor;
+import me.goodgamer123.EngineersTycoon.Machines.MineBuilder;
 
 public class MachinePlace implements Listener {
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	private void onBlockPlace(BlockPlaceEvent e) {
 		
 		ItemStack item = e.getItemInHand();
 		item.setAmount(1);
+		
+//=================================================================================================================================================================//
 		
 		if (item.equals(ItemExtractor.itemExtractor1())) {
 			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, 0.02, 0.5), ArmorStand.class);
@@ -36,7 +43,7 @@ public class MachinePlace implements Listener {
 	        lch.setColor(Color.fromRGB(0, 255, 0));
 	        lchest.setItemMeta(lch);
 	        
-	        as.setHelmet(lchest);
+	        as.getEquipment().setHelmet(lchest);
 		}
 		
 		if (item.equals(ItemExtractor.itemExtractor2())) {
@@ -55,7 +62,7 @@ public class MachinePlace implements Listener {
 	        lch.setColor(Color.fromRGB(0, 0, 255));
 	        lchest.setItemMeta(lch);
 	        
-	        as.setHelmet(lchest);
+	        as.getEquipment().setHelmet(lchest);
 		}
 		
 		if (item.equals(ItemExtractor.itemExtractor3())) {
@@ -74,7 +81,7 @@ public class MachinePlace implements Listener {
 	        lch.setColor(Color.fromRGB(255, 0, 0));
 	        lchest.setItemMeta(lch);
 	        
-	        as.setHelmet(lchest);
+	        as.getEquipment().setHelmet(lchest);
 		}
 		
 		if (item.equals(ItemExtractor.itemExtractor4())) {
@@ -93,7 +100,228 @@ public class MachinePlace implements Listener {
 	        lch.setColor(Color.fromRGB(255, 0, 255));
 	        lchest.setItemMeta(lch);
 	        
-	        as.setHelmet(lchest);
+	        as.getEquipment().setHelmet(lchest);
+		}
+		
+//=================================================================================================================================================================//
+		
+		if (item.equals(MineBuilder.mineBuilder1())) {
+			Location max = e.getBlock().getLocation().add(2, -1, 2);
+	        Location min = e.getBlock().getLocation().add(-3, -13, -3);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    if (!block.getType().equals(Material.AIR)) {
+	                    	e.setCancelled(true);
+	                    	e.getPlayer().sendMessage(ChatColor.RED + "You need to clear a 5x13x5 area under the mine generator.");
+	                    	return;
+	                    }
+	                }
+	            }
+	        }
+			
+			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.15, 0.5), ArmorStand.class);
+
+	        as.setGravity(false);
+	        as.setCanPickupItems(false);
+	        as.setCustomName("MineBuilderMK1");
+	        as.setCustomNameVisible(false);
+	        as.setVisible(false);
+	        as.setMarker(true);
+	        as.setSmall(true);
+	        
+	        as.getEquipment().setHelmet(new ItemStack(Material.LIME_CONCRETE));
+	        
+	        max = e.getBlock().getLocation().add(2, -2, 2);
+	        min = e.getBlock().getLocation().add(-3, -13, -3);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    block.setType(Material.BEDROCK);
+	                }
+	            }
+	        }
+	        
+	        max = e.getBlock().getLocation().add(1, -2, 1);
+	        min = e.getBlock().getLocation().add(-2, -12, -2);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    if (new Random().nextInt(2) == 0) block.setType(Material.COAL_ORE); else block.setType(Material.IRON_ORE);
+	                }
+	            }
+	        }
+		}
+		
+		if (item.equals(MineBuilder.mineBuilder2())) {
+			Location max = e.getBlock().getLocation().add(2, -1, 2);
+	        Location min = e.getBlock().getLocation().add(-3, -13, -3);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    if (!block.getType().equals(Material.AIR)) {
+	                    	e.setCancelled(true);
+	                    	e.getPlayer().sendMessage(ChatColor.RED + "You need to clear a 5x13x5 area under the mine generator.");
+	                    	return;
+	                    }
+	                }
+	            }
+	        }
+			
+			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.15, 0.5), ArmorStand.class);
+
+	        as.setGravity(false);
+	        as.setCanPickupItems(false);
+	        as.setCustomName("MineBuilderMK2");
+	        as.setCustomNameVisible(false);
+	        as.setVisible(false);
+	        as.setMarker(true);
+	        as.setSmall(true);
+	        
+	        as.getEquipment().setHelmet(new ItemStack(Material.LIGHT_BLUE_CONCRETE));
+	        
+	        max = e.getBlock().getLocation().add(2, -2, 2);
+	        min = e.getBlock().getLocation().add(-3, -13, -3);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    block.setType(Material.BEDROCK);
+	                }
+	            }
+	        }
+	        
+	        max = e.getBlock().getLocation().add(1, -2, 1);
+	        min = e.getBlock().getLocation().add(-2, -12, -2);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    int random = new Random().nextInt(3);
+	                    if (random == 0) block.setType(Material.COAL_ORE); else if (random == 1) block.setType(Material.IRON_ORE); else block.setType(Material.GOLD_ORE);
+	                }
+	            }
+	        }
+		}
+		
+		if (item.equals(MineBuilder.mineBuilder3())) {
+			Location max = e.getBlock().getLocation().add(2, -1, 2);
+	        Location min = e.getBlock().getLocation().add(-3, -13, -3);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    if (!block.getType().equals(Material.AIR)) {
+	                    	e.setCancelled(true);
+	                    	e.getPlayer().sendMessage(ChatColor.RED + "You need to clear a 5x13x5 area under the mine generator.");
+	                    	return;
+	                    }
+	                }
+	            }
+	        }
+			
+			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.15, 0.5), ArmorStand.class);
+
+	        as.setGravity(false);
+	        as.setCanPickupItems(false);
+	        as.setCustomName("MineBuilderMK3");
+	        as.setCustomNameVisible(false);
+	        as.setVisible(false);
+	        as.setMarker(true);
+	        as.setSmall(true);
+	        
+	        as.getEquipment().setHelmet(new ItemStack(Material.RED_CONCRETE));
+
+	        max = e.getBlock().getLocation().add(2, -2, 2);
+	        min = e.getBlock().getLocation().add(-3, -13, -3);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    block.setType(Material.BEDROCK);
+	                }
+	            }
+	        }
+	        
+	        max = e.getBlock().getLocation().add(1, -2, 1);
+	        min = e.getBlock().getLocation().add(-2, -12, -2);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    int random = new Random().nextInt(4);
+	                    if (random == 0) block.setType(Material.COAL_ORE); else if (random == 1) block.setType(Material.IRON_ORE); else if (random == 2) block.setType(Material.DIAMOND_ORE); else block.setType(Material.GOLD_ORE);
+	                }
+	            }
+	        }
+		}
+		
+		if (item.equals(MineBuilder.mineBuilder4())) {
+			Location max = e.getBlock().getLocation().add(2, -1, 2);
+	        Location min = e.getBlock().getLocation().add(-3, -13, -3);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    if (!block.getType().equals(Material.AIR)) {
+	                    	e.setCancelled(true);
+	                    	e.getPlayer().sendMessage(ChatColor.RED + "You need to clear a 5x13x5 area under the mine generator.");
+	                    	return;
+	                    }
+	                }
+	            }
+	        }
+			
+			ArmorStand as = (ArmorStand) e.getBlock().getWorld().spawn(e.getBlock().getLocation().add(0.5, -0.15, 0.5), ArmorStand.class);
+
+	        as.setGravity(false);
+	        as.setCanPickupItems(false);
+	        as.setCustomName("MineBuilderMK4");
+	        as.setCustomNameVisible(false);
+	        as.setVisible(false);
+	        as.setMarker(true);
+	        as.setSmall(true);
+	        
+	        as.getEquipment().setHelmet(new ItemStack(Material.PURPLE_CONCRETE));
+
+	        max = e.getBlock().getLocation().add(2, -2, 2);
+	        min = e.getBlock().getLocation().add(-3, -13, -3);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    block.setType(Material.BEDROCK);
+	                }
+	            }
+	        }
+	        
+	        max = e.getBlock().getLocation().add(1, -2, 1);
+	        min = e.getBlock().getLocation().add(-2, -12, -2);
+	        
+	        for(int x = (int) Math.ceil(max.getBlockX()); x > (int) Math.floor(min.getBlockX()); x--) {
+	            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
+	                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
+	                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+	                    int random = new Random().nextInt(5);
+	                    if (random == 0) block.setType(Material.COAL_ORE); else if (random == 1) block.setType(Material.IRON_ORE); else if (random == 2) block.setType(Material.DIAMOND_ORE); else if (random == 3) block.setType(Material.EMERALD_ORE); else block.setType(Material.GOLD_ORE);
+	                }
+	            }
+	        }
 		}
 		
 	}
