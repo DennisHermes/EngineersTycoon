@@ -14,7 +14,7 @@ public class MachineWorking {
 	
 	public static void ExtractorWorking(ArmorStand as) {
 		
-		Block block = as.getLocation().add(-0.5, -0.02, -0.5).getBlock();
+		Block block = as.getLocation().add(-0.5, 0, -0.5).getBlock();
 		
 		@SuppressWarnings("deprecation")
 		BlockFace targetFace = ((org.bukkit.material.Dispenser) block.getState().getData()).getFacing();
@@ -24,11 +24,21 @@ public class MachineWorking {
 				for(int i = 0; i < ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getSize(); i++) {
 					ItemStack item = ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getItem(i);
 					if (item != null) {
+						int count = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) count = count + is.getAmount();
+				        }
 						int newAmount = item.getAmount() - 1;
 						item.setAmount(1);
 						((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().addItem(item);
-						item.setAmount(newAmount);
-						((Container) block.getLocation().add(0, 1, -0).getBlock().getState()).getInventory().setItem(i, item);
+						int newCount = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) newCount = newCount + is.getAmount();
+				        }
+						if (count != newCount) {
+							item.setAmount(newAmount);
+							((Container) block.getLocation().add(0, 1, -0).getBlock().getState()).getInventory().setItem(i, item);
+						}
 						return;
 					}
 		        }
@@ -38,11 +48,21 @@ public class MachineWorking {
 				for (int i = 0; i < ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getSize(); i++) {
 					ItemStack item = ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getItem(i);
 					if (item != null) {
+						int count = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) count = count + is.getAmount();
+				        }
 						int newAmount = item.getAmount() - 1;
 						item.setAmount(1);
 						((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().addItem(item);
-						item.setAmount(newAmount);
-						((Container) block.getLocation().add(0, -1, -0).getBlock().getState()).getInventory().setItem(i, item);
+						int newCount = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) newCount = newCount + is.getAmount();
+				        }
+						if (count != newCount) {
+							item.setAmount(newAmount);
+							((Container) block.getLocation().add(0, -1, -0).getBlock().getState()).getInventory().setItem(i, item);
+						}
 						return;
 					}
 		        }
@@ -60,7 +80,7 @@ public class MachineWorking {
 						item.setAmount(1);
 						((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().addItem(item);
 						int newCount = 0;
-						for (ItemStack is : ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getContents()) {
+						for (ItemStack is : ((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().getContents()) {
 							if (is != null) newCount = newCount + is.getAmount();
 				        }
 						if (count != newCount) {
@@ -100,11 +120,21 @@ public class MachineWorking {
 				for (int i = 0; i < ((Container) block.getLocation().add(-1, 0, 0).getBlock().getState()).getInventory().getSize(); i++) {
 					ItemStack item = ((Container) block.getLocation().add(-1, 0, 0).getBlock().getState()).getInventory().getItem(i);
 					if (item != null) {
+						int count = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(1, 0, 0).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) count = count + is.getAmount();
+				        }
 						int newAmount = item.getAmount() - 1;
 						item.setAmount(1);
 						((Container) block.getLocation().add(1, 0, 0).getBlock().getState()).getInventory().addItem(item);
-						item.setAmount(newAmount);
-						((Container) block.getLocation().add(-1, 0, 0).getBlock().getState()).getInventory().setItem(i, item);
+						int newCount = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(1, 0, 0).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) newCount = newCount + is.getAmount();
+				        }
+						if (count != newCount) {
+							item.setAmount(newAmount);
+							((Container) block.getLocation().add(-1, 0, 0).getBlock().getState()).getInventory().setItem(i, item);
+						}
 						return;
 					}
 		        }
@@ -114,11 +144,21 @@ public class MachineWorking {
 				for (int i = 0; i < ((Container) block.getLocation().add(1, 0, 0).getBlock().getState()).getInventory().getSize(); i++) {
 					ItemStack item = ((Container) block.getLocation().add(1, 0, 0).getBlock().getState()).getInventory().getItem(i);
 					if (item != null) {
+						int count = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(-1, 0, 0).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) count = count + is.getAmount();
+				        }
 						int newAmount = item.getAmount() - 1;
 						item.setAmount(1);
 						((Container) block.getLocation().add(-1, 0, 0).getBlock().getState()).getInventory().addItem(item);
-						item.setAmount(newAmount);
-						((Container) block.getLocation().add(1, 0, 0).getBlock().getState()).getInventory().setItem(i, item);
+						int newCount = 0;
+						for (ItemStack is : ((Container) block.getLocation().add(-1, 0, 0).getBlock().getState()).getInventory().getContents()) {
+							if (is != null) newCount = newCount + is.getAmount();
+				        }
+						if (count != newCount) {
+							item.setAmount(newAmount);
+							((Container) block.getLocation().add(1, 0, 0).getBlock().getState()).getInventory().setItem(i, item);
+						}
 						return;
 					}
 		        }
