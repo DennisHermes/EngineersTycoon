@@ -166,6 +166,8 @@ public class MachineWorking {
 		}
 	}
 	
+	
+	
 	public static void MineGeneratorWorking(ArmorStand as, int tier) {
 		
 		Block locBlock = as.getLocation().add(-0.5, 0.15, -0.5).getBlock();
@@ -215,6 +217,8 @@ public class MachineWorking {
 		}
 	}
 	
+	
+	
 	public static void MinerWorking(ArmorStand as) {
 		
 		Block locBlock = as.getLocation().add(-0.5, 0.5, -0.5).getBlock();
@@ -251,6 +255,12 @@ public class MachineWorking {
                 }
             }
         }
+	}
+	
+	
+	
+	public static void ConveyerWorking(ArmorStand as) {
+		
 	}
 	
 }

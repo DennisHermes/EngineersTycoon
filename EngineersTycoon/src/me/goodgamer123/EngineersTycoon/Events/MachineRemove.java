@@ -62,6 +62,7 @@ public class MachineRemove implements Listener {
 		            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
 		                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
 		                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+		                    if (block.getType().equals(Material.COAL_ORE) || block.getType().equals(Material.IRON_ORE) || block.getType().equals(Material.GOLD_ORE) || block.getType().equals(Material.DIAMOND_ORE) || block.getType().equals(Material.EMERALD_ORE) || block.getType().equals(Material.BEDROCK))
 		                    block.setType(Material.AIR);
 		                }
 		            }
@@ -81,6 +82,7 @@ public class MachineRemove implements Listener {
 		            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
 		                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
 		                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+		                    if (block.getType().equals(Material.COAL_ORE) || block.getType().equals(Material.IRON_ORE) || block.getType().equals(Material.GOLD_ORE) || block.getType().equals(Material.DIAMOND_ORE) || block.getType().equals(Material.EMERALD_ORE) || block.getType().equals(Material.BEDROCK))
 		                    block.setType(Material.AIR);
 		                }
 		            }
@@ -100,6 +102,7 @@ public class MachineRemove implements Listener {
 		            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
 		                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
 		                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+		                    if (block.getType().equals(Material.COAL_ORE) || block.getType().equals(Material.IRON_ORE) || block.getType().equals(Material.GOLD_ORE) || block.getType().equals(Material.DIAMOND_ORE) || block.getType().equals(Material.EMERALD_ORE) || block.getType().equals(Material.BEDROCK))
 		                    block.setType(Material.AIR);
 		                }
 		            }
@@ -119,6 +122,7 @@ public class MachineRemove implements Listener {
 		            for(int y = (int) Math.ceil(max.getBlockY()); y > (int) Math.floor(min.getBlockY()); y--) {
 		                for(int z = (int) Math.ceil(max.getBlockZ()); z > (int) Math.floor(min.getBlockZ()); z--) {
 		                    Block block = e.getBlock().getWorld().getBlockAt(x, y, z);
+		                    if (block.getType().equals(Material.COAL_ORE) || block.getType().equals(Material.IRON_ORE) || block.getType().equals(Material.GOLD_ORE) || block.getType().equals(Material.DIAMOND_ORE) || block.getType().equals(Material.EMERALD_ORE) || block.getType().equals(Material.BEDROCK))
 		                    block.setType(Material.AIR);
 		                }
 		            }

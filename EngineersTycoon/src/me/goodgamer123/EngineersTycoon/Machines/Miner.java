@@ -128,12 +128,12 @@ public class Miner {
 		ItemStack minerInfo = new ItemStack(Material.DIAMOND);
 		ItemMeta minerInfoMeta = minerInfo.getItemMeta();
 		
-		minerInfoMeta.setDisplayName(ChatColor.BLUE + "Miner MK3");
+		minerInfoMeta.setDisplayName(ChatColor.RED + "Miner MK3");
 		
 		List<String> minerInfoLore = new ArrayList<String>();
 		minerInfoLore.add("");
-		minerInfoLore.add(ChatColor.BLUE + "Mark: " + ChatColor.DARK_BLUE + "3");
-		minerInfoLore.add(ChatColor.BLUE + "Blocks/minute: " + ChatColor.DARK_BLUE + "30");
+		minerInfoLore.add(ChatColor.RED + "Mark: " + ChatColor.DARK_RED + "3");
+		minerInfoLore.add(ChatColor.RED + "Blocks/minute: " + ChatColor.DARK_RED + "30");
 		minerInfoMeta.setLore(minerInfoLore);
 		minerInfo.setItemMeta(minerInfoMeta);
 		
@@ -144,12 +144,12 @@ public class Miner {
 		ItemStack minerInfo = new ItemStack(Material.EMERALD);
 		ItemMeta minerInfoMeta = minerInfo.getItemMeta();
 		
-		minerInfoMeta.setDisplayName(ChatColor.BLUE + "Miner MK4");
+		minerInfoMeta.setDisplayName(ChatColor.DARK_PURPLE + "Miner MK4");
 		
 		List<String> minerInfoLore = new ArrayList<String>();
 		minerInfoLore.add("");
-		minerInfoLore.add(ChatColor.BLUE + "Mark: " + ChatColor.DARK_BLUE + "4");
-		minerInfoLore.add(ChatColor.BLUE + "Blocks/minute: " + ChatColor.DARK_BLUE + "60");
+		minerInfoLore.add(ChatColor.LIGHT_PURPLE + "Mark: " + ChatColor.DARK_PURPLE + "4");
+		minerInfoLore.add(ChatColor.LIGHT_PURPLE + "Blocks/minute: " + ChatColor.DARK_PURPLE + "60");
 		minerInfoMeta.setLore(minerInfoLore);
 		minerInfo.setItemMeta(minerInfoMeta);
 		
