@@ -25,7 +25,7 @@ public class OnMachineInteraction implements Listener {
 
 	@EventHandler
 	private void PlayerInteractEvent(PlayerInteractEvent e) {
-		if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+		if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && !e.getPlayer().isSneaking()) {
 			if (e.getClickedBlock().getType().equals(Material.DISPENSER) && (((Nameable) e.getClickedBlock().getState()).getCustomName() != null)) {
 				if (((Nameable) e.getClickedBlock().getState()).getCustomName().equals(ItemExtractor.itemExtractor1().getItemMeta().getDisplayName())) {
 					e.setCancelled(true);
