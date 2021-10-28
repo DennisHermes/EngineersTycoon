@@ -15,6 +15,7 @@ import me.goodgamer123.EngineersTycoon.Events.InventoryClickEvents;
 import me.goodgamer123.EngineersTycoon.Events.MachinePlace;
 import me.goodgamer123.EngineersTycoon.Events.MachineRemove;
 import me.goodgamer123.EngineersTycoon.Events.OnMachineInteraction;
+import me.goodgamer123.EngineersTycoon.Machines.Conveyer;
 import me.goodgamer123.EngineersTycoon.Machines.ItemExtractor;
 import me.goodgamer123.EngineersTycoon.Machines.MineBuilder;
 import me.goodgamer123.EngineersTycoon.Machines.Miner;
@@ -76,6 +77,7 @@ public final class MainClass extends JavaPlugin {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
 						if (as.getCustomName() != null) {
 							if (as.getCustomName().equals("ItemExtractorMK1")) MachineWorking.ExtractorWorking(as);
+							else if (as.getCustomName().equals("ConveyerMK1")) MachineWorking.ConveyerWorking(as);
 							else if (as.getCustomName().equals("MinerMK1")) MachineWorking.MinerWorking(as);
 						}
 					}
@@ -88,6 +90,7 @@ public final class MainClass extends JavaPlugin {
 				for (World world : Bukkit.getWorlds()) {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
 						if (as.getCustomName() != null) if (as.getCustomName().equals("ItemExtractorMK2")) MachineWorking.ExtractorWorking(as);
+						else if (as.getCustomName().equals("ConveyerMK2")) MachineWorking.ConveyerWorking(as);
 					}
 				}
 			}
@@ -99,6 +102,7 @@ public final class MainClass extends JavaPlugin {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
 						if (as.getCustomName() != null) {
 							if (as.getCustomName().equals("ItemExtractorMK3")) MachineWorking.ExtractorWorking(as);
+							else if (as.getCustomName().equals("ConveyerMK3")) MachineWorking.ConveyerWorking(as);
 							else if (as.getCustomName().equals("MinerMK2")) MachineWorking.MinerWorking(as);
 						}
 					}
@@ -112,6 +116,7 @@ public final class MainClass extends JavaPlugin {
 					for (ArmorStand as : world.getEntitiesByClass(ArmorStand.class)) {
 						if (as.getCustomName() != null) {
 							if (as.getCustomName().equals("ItemExtractorMK4")) MachineWorking.ExtractorWorking(as);
+							else if (as.getCustomName().equals("ConveyerMK4")) MachineWorking.ConveyerWorking(as);
 							else if (as.getCustomName().equals("MinerMK3")) MachineWorking.MinerWorking(as);
 						}
 					}
@@ -141,7 +146,7 @@ public final class MainClass extends JavaPlugin {
 		Player p = (Player)sender;
 	    
 		if (cmd.getName().equalsIgnoreCase("machinelist")) {
-			Inventory inv = Bukkit.createInventory(null, 27, ChatColor.AQUA + "§lMachines");
+			Inventory inv = Bukkit.createInventory(null, 36, ChatColor.AQUA + "§lMachines");
 			inv.setItem(0, ItemExtractor.itemExtractor1());
 			inv.setItem(1, ItemExtractor.itemExtractor2());
 			inv.setItem(2, ItemExtractor.itemExtractor3());
@@ -154,6 +159,10 @@ public final class MainClass extends JavaPlugin {
 			inv.setItem(19, Miner.miner2());
 			inv.setItem(20, Miner.miner3());
 			inv.setItem(21, Miner.miner4());
+			inv.setItem(27, Conveyer.conveyer1());
+			inv.setItem(28, Conveyer.conveyer2());
+			inv.setItem(29, Conveyer.conveyer3());
+			inv.setItem(30, Conveyer.conveyer4());
 			
 			p.openInventory(inv);
 		}

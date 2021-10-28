@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+import me.goodgamer123.EngineersTycoon.Machines.Conveyer;
 import me.goodgamer123.EngineersTycoon.Machines.ItemExtractor;
 import me.goodgamer123.EngineersTycoon.Machines.MineBuilder;
 import me.goodgamer123.EngineersTycoon.Machines.Miner;
@@ -76,6 +77,26 @@ public class InventoryClickEvents implements Listener {
 				e.setCancelled(true);
 				p.updateInventory();
 				p.getInventory().addItem(Miner.miner4());
+			}
+			
+			
+			
+			if (e.getCurrentItem().equals(Conveyer.conveyer1())) {
+				e.setCancelled(true);
+				p.updateInventory();
+				p.getInventory().addItem(Conveyer.conveyer1());
+			} else if (e.getCurrentItem().equals(Conveyer.conveyer2())) {
+				e.setCancelled(true);
+				p.updateInventory();
+				p.getInventory().addItem(Conveyer.conveyer2());
+			} else if (e.getCurrentItem().equals(Conveyer.conveyer3())) {
+				e.setCancelled(true);
+				p.updateInventory();
+				p.getInventory().addItem(Conveyer.conveyer3());
+			} else if (e.getCurrentItem().equals(Conveyer.conveyer4())) {
+				e.setCancelled(true);
+				p.updateInventory();
+				p.getInventory().addItem(Conveyer.conveyer4());
 			}
 		}
 	}

@@ -1,13 +1,16 @@
 package me.goodgamer123.EngineersTycoon;
 
+import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Container;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 
 public class MachineWorking {
@@ -20,76 +23,142 @@ public class MachineWorking {
 		BlockFace targetFace = ((org.bukkit.material.Dispenser) block.getState().getData()).getFacing();
 		
 		if (targetFace.equals(BlockFace.DOWN)) {
-			if ((block.getLocation().add(0, -1, 0).getBlock().getState() instanceof Container) && (block.getLocation().add(0, 1, 0).getBlock().getState() instanceof Container)) {
-				for(int i = 0; i < ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getSize(); i++) {
-					ItemStack item = ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getItem(i);
-					if (item != null) {
-						int count = 0;
-						for (ItemStack is : ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getContents()) {
-							if (is != null) count = count + is.getAmount();
-				        }
-						int newAmount = item.getAmount() - 1;
-						item.setAmount(1);
-						((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().addItem(item);
-						int newCount = 0;
-						for (ItemStack is : ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getContents()) {
-							if (is != null) newCount = newCount + is.getAmount();
-				        }
-						if (count != newCount) {
-							item.setAmount(newAmount);
-							((Container) block.getLocation().add(0, 1, -0).getBlock().getState()).getInventory().setItem(i, item);
+			if (block.getLocation().add(0, 1, 0).getBlock().getState() instanceof Container) {
+				if (block.getLocation().add(0, -1, 0).getBlock().getState() instanceof Container) {
+					for(int i = 0; i < ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getSize(); i++) {
+						ItemStack item = ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getItem(i);
+						if (item != null) {
+							int count = 0;
+							for (ItemStack is : ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getContents()) {
+								if (is != null) count = count + is.getAmount();
+					        }
+							int newAmount = item.getAmount() - 1;
+							item.setAmount(1);
+							((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().addItem(item);
+							int newCount = 0;
+							for (ItemStack is : ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getContents()) {
+								if (is != null) newCount = newCount + is.getAmount();
+					        }
+							if (count != newCount) {
+								item.setAmount(newAmount);
+								((Container) block.getLocation().add(0, 1, -0).getBlock().getState()).getInventory().setItem(i, item);
+							}
+							return;
 						}
-						return;
+			        }
+				} else if (block.getLocation().add(0, -1, 0).getBlock().getType().equals(Material.POLISHED_BLACKSTONE_SLAB)) {
+					List<Entity> nearbyEntites0 = (List<Entity>) block.getWorld().getNearbyEntities(block.getLocation().add(0.6, -0.95, 0.4), 0.01, 0.01, 0.01);
+					if (!nearbyEntites0.isEmpty()) {
+						if (nearbyEntites0.get(0).getCustomName() != null) {
+							if (nearbyEntites0.get(0).getCustomName().startsWith("ConveyerMK")) {
+								if (((ArmorStand) nearbyEntites0.get(0)).getEquipment().getHelmet() != null) {
+									for(int i = 0; i < ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getSize(); i++) {
+										ItemStack item = ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getItem(i);
+										if (item != null) {
+											((ArmorStand) nearbyEntites0.get(0)).getEquipment().setHelmet(item);
+											int newAmount = item.getAmount() - 1;
+											item.setAmount(newAmount);
+											((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().setItem(i, item);
+											return;
+										}
+									}
+								}
+							}
+						}
 					}
-		        }
+				}
 			}
 		} else if (targetFace.equals(BlockFace.UP)) {
-			if ((block.getLocation().add(0, -1, 0).getBlock().getState() instanceof Container) && (block.getLocation().add(0, 1, 0).getBlock().getState() instanceof Container)) {
-				for (int i = 0; i < ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getSize(); i++) {
-					ItemStack item = ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getItem(i);
-					if (item != null) {
-						int count = 0;
-						for (ItemStack is : ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getContents()) {
-							if (is != null) count = count + is.getAmount();
-				        }
-						int newAmount = item.getAmount() - 1;
-						item.setAmount(1);
-						((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().addItem(item);
-						int newCount = 0;
-						for (ItemStack is : ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getContents()) {
-							if (is != null) newCount = newCount + is.getAmount();
-				        }
-						if (count != newCount) {
-							item.setAmount(newAmount);
-							((Container) block.getLocation().add(0, -1, -0).getBlock().getState()).getInventory().setItem(i, item);
+			if (block.getLocation().add(0, -1, 0).getBlock().getState() instanceof Container) {
+				if (block.getLocation().add(0, 1, 0).getBlock().getState() instanceof Container) {
+					for (int i = 0; i < ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getSize(); i++) {
+						ItemStack item = ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getItem(i);
+						if (item != null) {
+							int count = 0;
+							for (ItemStack is : ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getContents()) {
+								if (is != null) count = count + is.getAmount();
+					        }
+							int newAmount = item.getAmount() - 1;
+							item.setAmount(1);
+							((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().addItem(item);
+							int newCount = 0;
+							for (ItemStack is : ((Container) block.getLocation().add(0, 1, 0).getBlock().getState()).getInventory().getContents()) {
+								if (is != null) newCount = newCount + is.getAmount();
+					        }
+							if (count != newCount) {
+								item.setAmount(newAmount);
+								((Container) block.getLocation().add(0, -1, -0).getBlock().getState()).getInventory().setItem(i, item);
+							}
+							return;
 						}
-						return;
+			        }
+				} else if (block.getLocation().add(0, 1, 0).getBlock().getType().equals(Material.POLISHED_BLACKSTONE_SLAB)) {
+					List<Entity> nearbyEntites0 = (List<Entity>) block.getWorld().getNearbyEntities(block.getLocation().add(0.6, 1.05, 0.4), 0.01, 0.01, 0.01);
+					if (!nearbyEntites0.isEmpty()) {
+						if (nearbyEntites0.get(0).getCustomName() != null) {
+							if (nearbyEntites0.get(0).getCustomName().startsWith("ConveyerMK")) {
+								if (((ArmorStand) nearbyEntites0.get(0)).getEquipment().getItemInMainHand().getType() == Material.AIR) {
+									for(int i = 0; i < ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getSize(); i++) {
+										ItemStack item = ((Container) block.getLocation().add(0, -1, 0).getBlock().getState()).getInventory().getItem(i);
+										if (item != null) {
+											((ArmorStand) nearbyEntites0.get(0)).getEquipment().setItemInMainHand(item);
+											int newAmount = item.getAmount() - 1;
+											item.setAmount(newAmount);
+											((Container) block.getLocation().add(0, -1, -0).getBlock().getState()).getInventory().setItem(i, item);
+											return;
+										}
+									}
+								}
+							}
+						}
 					}
-		        }
+				}
 			}
 		} else if (targetFace.equals(BlockFace.NORTH)) {
-			if ((block.getLocation().add(0, 0, -1).getBlock().getState() instanceof Container) && (block.getLocation().add(0, 0, 1).getBlock().getState() instanceof Container)) {
-				for (int i = 0; i < ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getSize(); i++) {
-					ItemStack item = ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getItem(i);
-					if (item != null) {
-						int count = 0;
-						for (ItemStack is : ((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().getContents()) {
-							if (is != null) count = count + is.getAmount();
-				        }
-						int newAmount = item.getAmount() - 1;
-						item.setAmount(1);
-						((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().addItem(item);
-						int newCount = 0;
-						for (ItemStack is : ((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().getContents()) {
-							if (is != null) newCount = newCount + is.getAmount();
-				        }
-						if (count != newCount) {
-							item.setAmount(newAmount);
-							((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().setItem(i, item);
+			if (block.getLocation().add(0, 0, 1).getBlock().getState() instanceof Container) {
+				if (block.getLocation().add(0, 0, -1).getBlock().getState() instanceof Container) {
+					for (int i = 0; i < ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getSize(); i++) {
+						ItemStack item = ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getItem(i);
+						if (item != null) {
+							int count = 0;
+							for (ItemStack is : ((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().getContents()) {
+								if (is != null) count = count + is.getAmount();
+					        }
+							int newAmount = item.getAmount() - 1;
+							item.setAmount(1);
+							((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().addItem(item);
+							int newCount = 0;
+							for (ItemStack is : ((Container) block.getLocation().add(0, 0, -1).getBlock().getState()).getInventory().getContents()) {
+								if (is != null) newCount = newCount + is.getAmount();
+					        }
+							if (count != newCount) {
+								item.setAmount(newAmount);
+								((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().setItem(i, item);
+							}
+							return;
 						}
-						return;
+			        }
+				} else if (block.getLocation().add(0, 0, -1).getBlock().getType().equals(Material.POLISHED_BLACKSTONE_SLAB)) {
+					List<Entity> nearbyEntites0 = (List<Entity>) block.getWorld().getNearbyEntities(block.getLocation().add(0.6, 0.05, -0.6), 0.01, 0.01, 0.01);
+					if (!nearbyEntites0.isEmpty()) {
+						if (nearbyEntites0.get(0).getCustomName() != null) {
+							if (nearbyEntites0.get(0).getCustomName().startsWith("ConveyerMK")) {
+								if (((ArmorStand) nearbyEntites0.get(0)).getEquipment().getItemInMainHand().getType() == Material.AIR) {
+									for (int i = 0; i < ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getSize(); i++) {
+										ItemStack item = ((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().getItem(i);
+										if (item != null) {
+											((ArmorStand) nearbyEntites0.get(0)).getEquipment().setItemInMainHand(item);
+											int newAmount = item.getAmount() - 1;
+											item.setAmount(newAmount);
+											((Container) block.getLocation().add(0, 0, 1).getBlock().getState()).getInventory().setItem(i, item);
+											return;
+										}
+									}
+								}
+							}
+						}
 					}
-		        }
+				}
 			}
 		} else if (targetFace.equals(BlockFace.SOUTH)) {
 			if ((block.getLocation().add(0, 0, -1).getBlock().getState() instanceof Container) && (block.getLocation().add(0, 0, 1).getBlock().getState() instanceof Container)) {
@@ -260,7 +329,29 @@ public class MachineWorking {
 	
 	
 	public static void ConveyerWorking(ArmorStand as) {
-		
+		List<Entity> nearbyEntites0 = (List<Entity>) as.getWorld().getNearbyEntities(as.getLocation().add(-0.31, 0.05, 0.1), 0.01, 0.01, 0.01);
+		if (!nearbyEntites0.isEmpty()) {
+			List<Entity> nearbyEntites1 = (List<Entity>) as.getWorld().getNearbyEntities(nearbyEntites0.get(0).getLocation().add(0, 0, 1), 0.01, 0.01, 0.01);
+			if (!nearbyEntites1.isEmpty()) {
+				
+			}
+			return;
+		}
+		nearbyEntites0 = (List<Entity>) as.getWorld().getNearbyEntities(as.getLocation().add(-0.1, 0.05, 0.31), 0.01, 0.01, 0.01);
+		if (!nearbyEntites0.isEmpty()) {
+			Bukkit.broadcastMessage("west");
+			return;
+		}
+		nearbyEntites0 = (List<Entity>) as.getWorld().getNearbyEntities(as.getLocation().add(0.11, 0.05, 0.1), 0.01, 0.01, 0.01);
+		if (!nearbyEntites0.isEmpty()) {
+			Bukkit.broadcastMessage("noord");
+			return;
+		}
+		nearbyEntites0 = (List<Entity>) as.getWorld().getNearbyEntities(as.getLocation().add(-0.1, 0.05, -0.11), 0.01, 0.01, 0.01);
+		if (!nearbyEntites0.isEmpty()) {
+			Bukkit.broadcastMessage("oost");
+			return;
+		}
 	}
 	
 }
